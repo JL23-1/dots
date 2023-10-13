@@ -30,7 +30,7 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile import hook
 mod = "mod4"
-terminal = "kitty"
+terminal = "st"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -74,7 +74,7 @@ keys = [
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     ]
 
-groups = [Group(i) for i in "123456789"]
+groups = [Group(i) for i in "123456"]
 
 for i in groups:
     keys.extend(
@@ -129,23 +129,49 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.TextBox(
-                         text = ' ',
+#                widget.TextBox(
+#                         text = ' ',
+#                         background = colors[2],
+#                         foreground = colors[0],
+#                         padding = 0,
+#                         fontsize = 37
+#                         ),
+              widget.CheckUpdates(
+                         background = colors[0],
+                         distro = 'Ubuntu',
+                         no_update_string = 'Updates: 0',
+                         ),
+              widget.TextBox(
+                         text = '',
                          background = colors[2],
                          foreground = colors[0],
                          padding = 0,
                          fontsize = 37
                          ),
-                widget.GroupBox(
-                        highlight_method = 'block',
-                        background = colors[0],
-                        inactive = colors[1],
-                        this_screen_border = "#ffffff",
-                        this_current_screen_border = "#ffffff",
-                        block_highlight_text_color = colors[2]
+              widget.Battery(
+                         background = colors[2],
+                         foreground = '#ffffff',
+                         format = '{char} {percent:2.0%}',
+                         charge_char = '󰂏',
+                         discharge_char = '󰂌'
+                         ),
+               widget.TextBox(
+                         text = '',
+                         background = colors[0],
+                         foreground = colors[2],
+                         padding = 0,
+                         fontsize = 37
+                         ),
+               widget.GroupBox(
+                         highlight_method = 'block',
+                         background = colors[0],
+                         inactive = colors[1],
+                         this_screen_border = "#ffffff",
+                         this_current_screen_border = "#ffffff",
+                         block_highlight_text_color = colors[2]
                 ),
                 widget.TextBox(
-                         text = '',
+                         text = '',
                          background = colors[2],
                          foreground = colors[0],
                          padding = 0,
@@ -153,7 +179,7 @@ screens = [
                          ),
                 widget.Spacer(length=bar.STRETCH),
                 widget.TextBox(
-                         text = '',
+                         text = '',
                          background = colors[2],
                          foreground = colors[0],
                          padding = 0,
@@ -164,7 +190,7 @@ screens = [
                          padding = 5
                          ),
                 widget.TextBox(
-                         text = ' ',
+                         text = ' ',
                          background = colors[0],
                          foreground = colors[2],
                          padding = 0,
@@ -177,7 +203,7 @@ screens = [
                          padding = 5
                          ),
                 widget.TextBox(
-                         text = ' ',
+                         text = ' ',
                          background = colors[2],
                          foreground = colors[0],
                          padding = 0,
@@ -188,13 +214,13 @@ screens = [
                          background = colors[0],
                          format = "%A, %B %d - %H:%M "
                          ),
-                widget.TextBox(
-                         text = ' ',
-                         background = colors[2],
-                         foreground = colors[0],
-                         padding = 0,
-                         fontsize = 37
-                         ),
+#                widget.TextBox(
+#                         text = ' ',
+#                         background = colors[2],
+#                         foreground = colors[0],
+#                         padding = 0,
+#                         fontsize = 37
+#                         ),
                 
                 #widget.PulseVolume(),
                 ],
