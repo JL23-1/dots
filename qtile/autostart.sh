@@ -1,4 +1,5 @@
 #!/bin/sh
-nitrogen --restore
+nitrogen --restore &
 #steam -silent &
 dunst &
+nm-applet &

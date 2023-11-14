@@ -72,6 +72,13 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawn("rofi -show run"), desc="Spawn a command using a prompt widget"),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
+    # Extra keys (Brightness, Volume, etc.)
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl s +15%")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl s 15%-")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 5%-")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q set Master 5%+")),
+    Key(["control", "shift"], "Escape", lazy.spawn("xkill")),
     ]
 
 groups = [Group(i) for i in "123456"]
@@ -136,18 +143,18 @@ screens = [
 #                         padding = 0,
 #                         fontsize = 37
 #                         ),
-              widget.CheckUpdates(
-                         background = colors[0],
-                         distro = 'Ubuntu',
-                         no_update_string = 'Updates: 0',
-                         ),
-              widget.TextBox(
-                         text = '',
-                         background = colors[2],
-                         foreground = colors[0],
-                         padding = 0,
-                         fontsize = 37
-                         ),
+#              widget.CheckUpdates(
+#                         background = colors[0],
+#                         distro = 'Ubuntu',
+#                         no_update_string = 'Updates: 0',
+#                         ),
+#              widget.TextBox(
+#                         text = ' ',
+#                         background = colors[2],
+#                         foreground = colors[0],
+#                         padding = 0,
+#                         fontsize = 37
+#                         ),
               widget.Battery(
                          background = colors[2],
                          foreground = '#ffffff',
