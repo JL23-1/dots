@@ -29,6 +29,8 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from libqtile import hook
+import os
+import subprocess
 mod = "mod4"
 terminal = "st"
 
@@ -70,7 +72,7 @@ keys = [
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawn("rofi -show run"), desc="Spawn a command using a prompt widget"),
+    Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Spawn a command using a prompt widget"),
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     # Extra keys (Brightness, Volume, etc.)
     Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl s +15%")),
@@ -123,14 +125,15 @@ layouts = [
     ]
 
 widget_defaults = dict(
-    font="Hack Nerd Font",
+    font="DejaVuSansM Nerd Font",
     fontsize=12,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
-colors = [["#6b6363", "#6b6363"],
-          ["#aaaaaa", "#aaaaaa"],
-          ["#383131", "#383131"]]
+colors = [["#7f849c", "#7f849c"],
+          ["#94e2d5", "#94e2d5"],
+          ["#1e1e2e", "#1e1e2e"],
+          ["#cdd6f4", "#cdd6f4"]]
 
 screens = [
     Screen(
@@ -157,7 +160,7 @@ screens = [
 #                         ),
               widget.Battery(
                          background = colors[2],
-                         foreground = '#ffffff',
+                         foreground = colors[3],
                          format = '{char} {percent:2.0%}',
                          charge_char = '󰂏',
                          discharge_char = '󰂌'
@@ -283,7 +286,7 @@ wl_input_rules = None
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
-@hook.subscribe.startup_once
+@hook.subscribe.startup
 def autostart():
     home = os.path.expanduser('~/.config/qtile/autostart.sh')
     subprocess.Popen([home])

@@ -1,5 +1,6 @@
 #!/bin/sh
 nitrogen --restore &
-#steam -silent &
-dunst &
+# steam -silent &
+# dunst &
 nm-applet &
+xset b off &
